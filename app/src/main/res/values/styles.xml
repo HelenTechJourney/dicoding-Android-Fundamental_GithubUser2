@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Warna teks judul aplikasi -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+</resources>

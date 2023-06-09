@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/searchview">
+    <group android:menuCategory="container">
+        <item
+            android:id="@+id/search"
+            android:icon="@drawable/search"
+            android:title="@string/search"
+            app:actionViewClass="androidx.appcompat.widget.SearchView"
+            app:showAsAction="always"/>
+        <item android:id="@+id/favorite"
+            android:icon="@drawable/favorite_full"
+            android:title="@string/favorite"
+            app:showAsAction="always"/>
+        <item android:id="@+id/setting"
+            android:title="@string/setting"
+            android:icon="@drawable/setting"
+            app:showAsAction="always"/>
+    </group>
+</menu>
