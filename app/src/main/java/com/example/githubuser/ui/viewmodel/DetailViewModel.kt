@@ -1,15 +1,15 @@
 package com.example.githubuser.ui.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.githubuser.data.entity.FavoriteEntity
 import com.example.githubuser.data.repository.FavoriteRepository
-import com.example.githubuser.remote.retrofit.ApiConfig
 import com.example.githubuser.remote.response.DetailUserResponse
 import com.example.githubuser.remote.response.ItemsItem
-import android.content.Context
+import com.example.githubuser.remote.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,14 +30,14 @@ class DetailViewModel (context: Context): ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object {
+    companion object{
         private const val TAG = "DetailViewModel"
     }
 
-    var username: String? = ""
+    var username : String? = ""
         set(value) {
-            field = value
-            if (value != null) {
+            field= value
+            if (value !=  null) {
                 findDetail(value)
                 getFollowers(value)
                 getFollowing(value)
@@ -45,7 +45,7 @@ class DetailViewModel (context: Context): ViewModel() {
         }
 
 
-    private fun findDetail(username: String) {
+    private fun findDetail(username: String){
         _isLoading.value = true
         val client = ApiConfig.getApiService().getDetailUser(username)
         client.enqueue(object : Callback<DetailUserResponse> {
@@ -58,8 +58,7 @@ class DetailViewModel (context: Context): ViewModel() {
                     _detailUser.value = response.body()
 
                 } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
-                }
+                    Log.e(TAG, "onFailure: ${response.message()}") }
             }
 
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
@@ -68,8 +67,7 @@ class DetailViewModel (context: Context): ViewModel() {
             }
         })
     }
-
-    fun getFollowers(query: String) {
+    fun getFollowers(query: String ) {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getFollowers(query)
         client.enqueue(object : Callback<List<ItemsItem>> {
@@ -84,7 +82,6 @@ class DetailViewModel (context: Context): ViewModel() {
                     Log.d("MainViewModel", "onFailure: ${response.message()}")
                 }
             }
-
             override fun onFailure(call: Call<List<ItemsItem>>, t: Throwable) {
                 _isLoading.value = false
                 Log.e("MainViewModel", "onFailure: ${t.message}")
@@ -92,7 +89,7 @@ class DetailViewModel (context: Context): ViewModel() {
         })
     }
 
-    fun getFollowing(query: String) {
+    fun getFollowing(query: String ) {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getFollowing(query)
         client.enqueue(object : Callback<List<ItemsItem>> {
@@ -107,7 +104,6 @@ class DetailViewModel (context: Context): ViewModel() {
                     Log.d("MainViewModel", "onFailure: ${response.message()}")
                 }
             }
-
             override fun onFailure(call: Call<List<ItemsItem>>, t: Throwable) {
                 _isLoading.value = false
                 Log.e("MainViewModel", "onFailure: ${t.message}")

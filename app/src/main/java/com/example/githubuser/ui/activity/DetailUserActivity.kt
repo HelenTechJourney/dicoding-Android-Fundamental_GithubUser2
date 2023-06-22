@@ -22,6 +22,8 @@ import com.example.githubuser.ui.viewmodel.FavoriteViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
+
+@Suppress("DEPRECATION")
 class DetailUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailUserBinding
     private lateinit var viewModel: DetailViewModel
@@ -114,7 +116,11 @@ class DetailUserActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
         }
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun setFavorite() {
         if (isFavorite) {
             binding.fabFavorite.setImageDrawable(resources.getDrawable(R.drawable.favorite_full))

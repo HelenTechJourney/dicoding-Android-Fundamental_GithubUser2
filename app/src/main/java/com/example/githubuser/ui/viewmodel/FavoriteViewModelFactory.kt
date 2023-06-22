@@ -1,5 +1,6 @@
 package com.example.githubuser.ui.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +18,7 @@ class FavoriteViewModelFactory (private  val context: Context) : ViewModelProvid
     }
 
     companion object {
+        @SuppressLint("StaticFieldLeak")
         @Volatile
         private var instance: FavoriteViewModelFactory? = null
 

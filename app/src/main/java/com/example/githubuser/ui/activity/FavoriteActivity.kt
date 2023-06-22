@@ -14,6 +14,7 @@ import com.example.githubuser.ui.adapter.UserAdapter
 import com.example.githubuser.ui.viewmodel.FavoriteViewModel
 import com.example.githubuser.ui.viewmodel.FavoriteViewModelFactory
 
+@Suppress("DEPRECATION")
 class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
     private lateinit var viewModel: FavoriteViewModel

@@ -39,9 +39,7 @@ class FollowFragment : Fragment() {
         Log.d("arguments: username", username.toString())
 
         detailViewModel =
-            ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory()).get(
-                DetailViewModel::class.java
-            )
+            ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[DetailViewModel::class.java]
         arguments?.let {
             number = it.getInt(SECTION_NUMBER)
             username = it.getString(SECTION_USERNAME)

@@ -10,7 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.githubuser.R
 import com.example.githubuser.remote.response.ItemsItem
 
-class UserAdapter(private val listUser: List<ItemsItem>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class UserAdapter(private val listUser: List<ItemsItem>) :
+    RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     private var onItemClickCallback: OnItemClickCallback?=null
 
@@ -26,7 +27,6 @@ class UserAdapter(private val listUser: List<ItemsItem>) : RecyclerView.Adapter<
         ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.item_user, viewGroup, false))
 
     override fun getItemCount() = listUser.size
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var imageView: ImageView = view.findViewById(R.id.img_item_avatar)
         val tvItem: TextView = view.findViewById(R.id.tv_item_login)
@@ -37,6 +37,7 @@ class UserAdapter(private val listUser: List<ItemsItem>) : RecyclerView.Adapter<
         viewHolder.tvItem.text = user.login
         Glide.with(viewHolder.itemView)
             .load(user.avatarUrl)
+            .circleCrop()
             .into(viewHolder.imageView)
         viewHolder.itemView.setOnClickListener {
             onItemClickCallback?.onItemClicked(listUser[viewHolder.adapterPosition])

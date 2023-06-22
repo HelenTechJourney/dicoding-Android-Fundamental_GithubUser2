@@ -4,14 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubuser.remote.retrofit.ApiConfig
 import com.example.githubuser.remote.response.ItemsItem
 import com.example.githubuser.remote.response.SearchResponse
+import com.example.githubuser.remote.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel() {
+class MainViewModel : ViewModel(){
 
     private val _listUser = MutableLiveData<List<ItemsItem>>()
     val listUser: LiveData<List<ItemsItem>> = _listUser
@@ -19,15 +19,13 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object {
+    companion object{
         private const val TAG = "MainViewModel"
     }
-
     init {
         findUser()
     }
-
-   fun findUser(query: String = "User") {
+    fun findUser(query: String = "User") {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getSearchUser(query)
         client.enqueue(object : Callback<SearchResponse> {
@@ -42,8 +40,9 @@ class MainViewModel : ViewModel() {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
-
-            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+            override fun onFailure(
+                call: Call<SearchResponse>,
+                t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }

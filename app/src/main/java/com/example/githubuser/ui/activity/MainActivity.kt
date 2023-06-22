@@ -3,14 +3,13 @@ package com.example.githubuser.ui.activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.SearchView
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -19,8 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuser.R
 import com.example.githubuser.SettingPreferences
 import com.example.githubuser.databinding.ActivityMainBinding
-import com.example.githubuser.ui.adapter.UserAdapter
 import com.example.githubuser.remote.response.ItemsItem
+import com.example.githubuser.ui.adapter.UserAdapter
 import com.example.githubuser.ui.viewmodel.MainViewModel
 import com.example.githubuser.ui.viewmodel.SettingViewModel
 import com.example.githubuser.ui.viewmodel.ViewModelFactory
@@ -29,7 +28,7 @@ internal val Context.dataStore: DataStore<Preferences> by preferencesDataStore(n
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels ()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,13 +59,13 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.option_menu, menu)
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu.findItem(R.id.search)?.actionView as SearchView
+        val searchView = menu.findItem(R.id.search)?.actionView as androidx.appcompat.widget.SearchView
 
         searchView.clearFocus()
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.queryHint = resources.getString(R.string.search_hint)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.findUser(query)
@@ -96,7 +95,6 @@ class MainActivity : AppCompatActivity() {
             else -> true
         }
     }
-
     private fun showSelectedUser(detailUser: ItemsItem) {
         val intent = Intent(this, DetailUserActivity::class.java)
 

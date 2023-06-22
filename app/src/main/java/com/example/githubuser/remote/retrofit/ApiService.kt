@@ -1,5 +1,6 @@
 package com.example.githubuser.remote.retrofit
 
+
 import com.example.githubuser.remote.response.DetailUserResponse
 import com.example.githubuser.remote.response.ItemsItem
 import com.example.githubuser.remote.response.SearchResponse

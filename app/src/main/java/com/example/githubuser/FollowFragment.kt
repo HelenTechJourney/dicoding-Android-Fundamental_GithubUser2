@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuser.adapter.UserAdapter
+import com.example.githubuser.ui.adapter.UserAdapter
 import com.example.githubuser.databinding.FragmentFollowBinding
-import com.example.githubuser.response.ItemsItem
-import com.example.githubuser.viewmodel.DetailViewModel
+import com.example.githubuser.remote.response.ItemsItem
+import com.example.githubuser.ui.viewmodel.DetailViewModel
 
 class FollowFragment : Fragment() {
     companion object {

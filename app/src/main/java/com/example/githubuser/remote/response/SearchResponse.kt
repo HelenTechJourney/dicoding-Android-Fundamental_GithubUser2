@@ -2,7 +2,7 @@ package com.example.githubuser.remote.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
+import kotlinx.android.parcel.Parcelize
 
 data class SearchResponse(
 
@@ -15,7 +15,6 @@ data class SearchResponse(
     @field:SerializedName("items")
     val items: List<ItemsItem>
 )
-
 @Parcelize
 data class ItemsItem(
 
@@ -33,4 +32,4 @@ data class ItemsItem(
 
     @field:SerializedName("id")
     val id: Int
-) : Parcelable
+): Parcelable
